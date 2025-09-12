@@ -241,4 +241,82 @@ describe('Unit test of the Json object', () => {
   it('parse timestamp string', () => {
     expect(Json.parse('"2025-01-10T07:40:08.140Z"')).toBe('2025-01-10T07:40:08.140Z');
   });
+
+  // Test error handling for parse method
+  it('should throw TypeError for non-string input to parse', () => {
+    expect(() => Json.parse(123)).toThrow(TypeError);
+    expect(() => Json.parse(123)).toThrow('JSON.parse requires a string argument');
+    expect(() => Json.parse(null)).toThrow(TypeError);
+    expect(() => Json.parse(undefined)).toThrow(TypeError);
+    expect(() => Json.parse({})).toThrow(TypeError);
+  });
+
+  it('should throw TypeError for invalid reviver in parse', () => {
+    expect(() => Json.parse('{"a":1}', 'not a function')).toThrow(TypeError);
+    expect(() => Json.parse('{"a":1}', 123)).toThrow(TypeError);
+    expect(() => Json.parse('{"a":1}', {})).toThrow(TypeError);
+  });
+
+  it('should throw SyntaxError for invalid JSON in parse', () => {
+    expect(() => Json.parse('invalid json')).toThrow(SyntaxError);
+    expect(() => Json.parse('{"a":}')).toThrow(SyntaxError);
+    expect(() => Json.parse('{a:1}')).toThrow(SyntaxError);
+  });
+
+  // Test error handling for stringify method
+  it('should throw TypeError for invalid replacer in stringify', () => {
+    expect(() => Json.stringify({a: 1}, 'not a function')).toThrow(TypeError);
+    expect(() => Json.stringify({a: 1}, 123)).toThrow(TypeError);
+    expect(() => Json.stringify({a: 1}, {})).toThrow(TypeError);
+  });
+
+  it('should throw TypeError for invalid space in stringify', () => {
+    expect(() => Json.stringify({a: 1}, null, {})).toThrow(TypeError);
+    expect(() => Json.stringify({a: 1}, null, true)).toThrow(TypeError);
+    expect(() => Json.stringify({a: 1}, null, [])).toThrow(TypeError);
+  });
+
+  it('should handle circular references in stringify', () => {
+    const obj = { a: 1 };
+    obj.self = obj;
+    expect(() => Json.stringify(obj)).toThrow(TypeError);
+    expect(() => Json.stringify(obj)).toThrow('Converting circular structure to JSON');
+  });
+
+  it('should allow null and undefined for optional parameters', () => {
+    expect(() => Json.parse('{"a":1}', null)).not.toThrow();
+    expect(() => Json.parse('{"a":1}', undefined)).not.toThrow();
+    expect(() => Json.stringify({a: 1}, null)).not.toThrow();
+    expect(() => Json.stringify({a: 1}, undefined)).not.toThrow();
+    expect(() => Json.stringify({a: 1}, null, null)).not.toThrow();
+    expect(() => Json.stringify({a: 1}, null, undefined)).not.toThrow();
+  });
+
+  it('should re-throw non-SyntaxError errors from parse', () => {
+    // 使用 jest.spyOn 来模拟 parseJson 函数
+    const jsonCustomNumbers = require('json-custom-numbers');
+    const mockError = new TypeError('Mock error for testing');
+    const parseJsonSpy = jest.spyOn(jsonCustomNumbers, 'parse').mockImplementation(() => {
+      throw mockError;
+    });
+
+    expect(() => Json.parse('{"a":1}')).toThrow(mockError);
+
+    // 恢复原始函数
+    parseJsonSpy.mockRestore();
+  });
+
+  it('should re-throw non-circular errors from stringify', () => {
+    // 使用 jest.spyOn 来模拟 stringifyJson 函数
+    const jsonCustomNumbers = require('json-custom-numbers');
+    const mockError = new Error('Some other stringify error');
+    const stringifyJsonSpy = jest.spyOn(jsonCustomNumbers, 'stringify').mockImplementation(() => {
+      throw mockError;
+    });
+
+    expect(() => Json.stringify({a: 1})).toThrow(mockError);
+
+    // 恢复原始函数
+    stringifyJsonSpy.mockRestore();
+  });
 });
