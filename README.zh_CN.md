@@ -3,8 +3,8 @@
 [![npm package](https://img.shields.io/npm/v/@qubit-ltd/json.svg)](https://npmjs.com/package/@qubit-ltd/json)
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![English Document](https://img.shields.io/badge/Document-English-blue.svg)](README.md)
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Haixing-Hu/js-json/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/Haixing-Hu/js-json/tree/master)
-[![Coverage Status](https://coveralls.io/repos/github/Haixing-Hu/js-json/badge.svg?branch=master)](https://coveralls.io/github/Haixing-Hu/js-json?branch=master)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/qubit-ltd/js-json/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/qubit-ltd/js-json/tree/master)
+[![Coverage Status](https://coveralls.io/repos/github/qubit-ltd/js-json/badge.svg?branch=master)](https://coveralls.io/github/qubit-ltd/js-json?branch=master)
 
 [@qubit-ltd/json] 是一个 JavaScript 库，它扩展了标准 JSON 对象的功能，提供了对超出 JavaScript 
 安全范围的大数字的强大支持。该库增强了解析和字符串化能力，使其非常适合处理大型数据集和复杂的数值操作，
@@ -315,7 +315,7 @@ console.log(Json.stringify(data, null, 2));
 
 1. 克隆仓库：
    ```sh
-   git clone https://github.com/Haixing-Hu/js-json.git
+   git clone https://github.com/qubit-ltd/js-json.git
    cd js-json
    ```
 
@@ -365,7 +365,7 @@ console.log(Json.stringify(data, null, 2));
 我们对这些贡献者的工作表示感谢，这些工作对本库功能的实现起到了至关重要的作用。
 
 [@qubit-ltd/json]: https://npmjs.com/package/@qubit-ltd/json
-[GitHub 仓库]: https://github.com/Haixing-Hu/js-json
+[GitHub 仓库]: https://github.com/qubit-ltd/js-json
 [Why does JSON.parse corrupt large numbers and how to solve this?]: https://jsoneditoronline.org/indepth/parse/why-does-json-parse-corrupt-large-numbers/
 [json-bigint]: https://github.com/sidorares/json-bigint
 [lossless-json]: https://github.com/josdejong/lossless-json

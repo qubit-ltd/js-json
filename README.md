@@ -3,8 +3,8 @@
 [![npm package](https://img.shields.io/npm/v/@qubit-ltd/json.svg)](https://npmjs.com/package/@qubit-ltd/json)
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![中文文档](https://img.shields.io/badge/文档-中文版-blue.svg)](README.zh_CN.md)
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Haixing-Hu/js-json/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/Haixing-Hu/js-json/tree/master)
-[![Coverage Status](https://coveralls.io/repos/github/Haixing-Hu/js-json/badge.svg?branch=master)](https://coveralls.io/github/Haixing-Hu/js-json?branch=master)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/qubit-ltd/js-json/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/qubit-ltd/js-json/tree/master)
+[![Coverage Status](https://coveralls.io/repos/github/qubit-ltd/js-json/badge.svg?branch=master)](https://coveralls.io/github/qubit-ltd/js-json?branch=master)
 
 [@qubit-ltd/json] is a JavaScript library that extends the functionality of the
 standard JSON object, providing robust support for working with numbers that 
@@ -332,7 +332,7 @@ to open an issue or submit a pull request to the [GitHub repository].
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/Haixing-Hu/js-json.git
+   git clone https://github.com/qubit-ltd/js-json.git
    cd js-json
    ```
 
@@ -390,7 +390,7 @@ We are grateful for the work of these contributors, which has been instrumental
 in shaping the functionality of this library.
 
 [@qubit-ltd/json]: https://npmjs.com/package/@qubit-ltd/json
-[GitHub repository]: https://github.com/Haixing-Hu/js-json
+[GitHub repository]: https://github.com/qubit-ltd/js-json
 [Why does JSON.parse corrupt large numbers and how to solve this?]: https://jsoneditoronline.org/indepth/parse/why-does-json-parse-corrupt-large-numbers/
 [json-bigint]: https://github.com/sidorares/json-bigint
 [lossless-json]: https://github.com/josdejong/lossless-json

@@ -6,12 +6,12 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Haixing-Hu/js-json.git"
+    "url": "git+https://github.com/qubit-ltd/js-json.git"
   },
   "bugs": {
-    "url": "https://github.com/Haixing-Hu/js-json/issues"
+    "url": "https://github.com/qubit-ltd/js-json/issues"
   },
-  "homepage": "https://github.com/Haixing-Hu/js-json",
+  "homepage": "https://github.com/qubit-ltd/js-json",
   "keywords": [
     "javascript",
     "json",
