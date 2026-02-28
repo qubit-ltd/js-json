@@ -8,6 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 import isInteger from './is-integer';
 import extractSignificantDigits from './extract-significant-digits';
+import isNumber from './is-number';
 
 /**
  * When the provided value is an unsafe number, describe what the reason is
@@ -23,6 +24,12 @@ import extractSignificantDigits from './extract-significant-digits';
  *     The reason why the value is unsafe. Returns `'none'` when the value is safe.
  */
 function getUnsafeReason(value) {
+  if (typeof value !== 'string') {
+    value = String(value);
+  }
+  if (!isNumber(value) || value === '' || value === 'NaN') {
+    return 'none';
+  }
   const num = parseFloat(value);
   const str = String(num);
   if (value === str) {
