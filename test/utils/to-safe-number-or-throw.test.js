@@ -35,7 +35,7 @@ describe('toSafeNumberOrThrow', () => {
     expect(toSafeNumberOrThrow('123.45678901234567', { approx: true })).toBe(123.45678901234567);
   });
 
-  it('throws an error for an approximately unsafe float string when approx is true', () => {
+  it('converts an approximately unsafe float string to a number when approx is true', () => {
     expect(toSafeNumberOrThrow('123.45678901234567890', { approx: true })).toBe(123.45678901234568);
   });
 
@@ -43,8 +43,14 @@ describe('toSafeNumberOrThrow', () => {
     expect(toSafeNumberOrThrow('1.23e4')).toBe(12300);
   });
 
-  it('throws an error for an unsafe number in scientific notation', () => {
+  it('converts a safe large number in scientific notation without throwing', () => {
     expect(toSafeNumberOrThrow('1.23e20')).toBe(1.23e+20);
+  });
+
+  it('throws an error for a truly unsafe number in scientific notation', () => {
+    expect(() => toSafeNumberOrThrow('1.234567890123456789e+30'))
+      .toThrow('Cannot safely convert to number: the value \'1.234567890123456789e+30\' '
+        + 'would truncate float and become 1.2345678901234568e+30');
   });
 
   it('converts a negative safe integer string to a number', () => {
@@ -72,7 +78,12 @@ describe('toSafeNumberOrThrow', () => {
       .toBe(-123.45678901234567);
   });
 
-  it('throws an error for a negative approximately unsafe float string when approx is true', () => {
+  it('converts a negative approximately unsafe float string to a number when approx is true', () => {
     expect(toSafeNumberOrThrow('-123.45678901234567890', { approx: true })).toBe(-123.45678901234568);
+  });
+
+  it('returns the number itself when passing a valid number type', () => {
+    expect(toSafeNumberOrThrow(123)).toBe(123);
+    expect(toSafeNumberOrThrow(123.45)).toBe(123.45);
   });
 });
