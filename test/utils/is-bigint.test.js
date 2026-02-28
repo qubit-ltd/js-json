@@ -45,4 +45,12 @@ describe('isBigInt', () => {
     expect(isBigInt('+n')).toBe(false);
     expect(isBigInt('-n')).toBe(false);
   });
+
+  it('returns false for non-string inputs', () => {
+    expect(isBigInt(123)).toBe(false);
+    expect(isBigInt(null)).toBe(false);
+    expect(isBigInt(undefined)).toBe(false);
+    expect(isBigInt({})).toBe(false);
+    expect(isBigInt([])).toBe(false);
+  });
 });
