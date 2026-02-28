@@ -24,6 +24,9 @@ const INTEGER_REGEX = /^[+-]?\d+$/;
  *     true if the string contains an integer; false otherwise.
  */
 function isInteger(value) {
+  if (typeof value !== 'string') {
+    return false;
+  }
   return INTEGER_REGEX.test(value);
 }
 

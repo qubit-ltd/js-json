@@ -45,4 +45,12 @@ describe('isInteger', () => {
   it('returns true for a string with leading zeros', () => {
     expect(isInteger('0123')).toBe(true);
   });
+
+  it('returns false for non-string inputs', () => {
+    expect(isInteger(123)).toBe(false);
+    expect(isInteger(null)).toBe(false);
+    expect(isInteger(undefined)).toBe(false);
+    expect(isInteger({})).toBe(false);
+    expect(isInteger([])).toBe(false);
+  });
 });
