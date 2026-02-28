@@ -50,4 +50,13 @@ describe('getUnsafeReason', () => {
   it('returns none for a small safe float', () => {
     expect(getUnsafeReason('0.0000001')).toBe('none');
   });
+
+  it('returns none for non-string or invalid inputs', () => {
+    expect(getUnsafeReason(123)).toBe('none');
+    expect(getUnsafeReason(null)).toBe('none');
+    expect(getUnsafeReason(undefined)).toBe('none');
+    expect(getUnsafeReason('')).toBe('none');
+    expect(getUnsafeReason('abc')).toBe('none');
+    expect(getUnsafeReason('NaN')).toBe('none');
+  });
 });
