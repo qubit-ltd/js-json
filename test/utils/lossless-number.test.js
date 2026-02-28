@@ -20,6 +20,12 @@ describe('LosslessNumber', () => {
     expect(() => new LosslessNumber('abc')).toThrow('Invalid number (value: "abc")');
   });
 
+  it('should throw an error when constructed with a non-string input', () => {
+    expect(() => new LosslessNumber(123)).toThrow('Invalid number (value: "123")');
+    expect(() => new LosslessNumber(null)).toThrow('Invalid number (value: "null")');
+    expect(() => new LosslessNumber({})).toThrow('Invalid number (value: "[object Object]")');
+  });
+
   it('should return a safe integer as a number', () => {
     const ln = new LosslessNumber('123');
     expect(ln.valueOf()).toBe(123);
