@@ -48,4 +48,20 @@ describe('extractSignificantDigits', () => {
   it('returns significant digits for a number with multiple decimal points', () => {
     expect(extractSignificantDigits('1.2.3')).toBe('12.3');
   });
+
+  it('returns empty string for "0"', () => {
+    expect(extractSignificantDigits('0')).toBe('');
+  });
+
+  it('returns empty string for "0.0"', () => {
+    expect(extractSignificantDigits('0.0')).toBe('');
+  });
+
+  it('returns empty string for "-0"', () => {
+    expect(extractSignificantDigits('-0')).toBe('');
+  });
+
+  it('returns empty string for "000"', () => {
+    expect(extractSignificantDigits('000')).toBe('');
+  });
 });
