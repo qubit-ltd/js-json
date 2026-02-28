@@ -28,11 +28,12 @@ const TRAILING_ZEROS_REGEX = /0+$/;
  * @private
  */
 function extractSignificantDigits(value) {
-  return value
+  const result = value
     .replace(EXPONENTIAL_PART_REGEX, '')          // from "-0.250e+30" to "-0.250"
     .replace(DOT_REGEX, '')                       // from "-0.250" to "-0250"
     .replace(TRAILING_ZEROS_REGEX, '')            // from "-0250" to "-025"
     .replace(LEADING_MINUS_AND_ZEROS_REGEX, '');  // from "-025" to "25"
+  return result;
 }
 
 export default extractSignificantDigits;
