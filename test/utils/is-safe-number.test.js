@@ -799,6 +799,45 @@ describe('isSafeNumber', () => {
     expect(defaultExport).toBe(isSafeNumber);
   });
 
+  it('actually covers line 88 by bypassing the string equality early returns', () => {
+    const originalIsInteger = isIntegerModule.default;
+    const originalExtractSignificantDigits = extractSignificantDigitsModule.default;
+
+    try {
+      isIntegerModule.default = jest.fn().mockReturnValue(false);
+
+      // use a value that isn't string-equal to its parsed value: '0.10' vs '0.1'
+      // parseFloat('0.10') -> 0.1, String(0.1) -> '0.1'
+      // '0.10' !== '0.1' (bypasses line 46)
+      
+      let callCount = 0;
+      extractSignificantDigitsModule.default = jest.fn().mockImplementation(() => {
+        callCount++;
+        if (callCount === 1) {
+          return '123'; // v, length 3 < 5
+        }
+        return '123456'; // s, length 6 >= 5
+      });
+
+      // Bypasses line 51 because '123' !== '123456'
+      const result = isSafeNumber('0.10', { approx: true, requiredDigits: 5 });
+
+      expect(result).toBe(true);
+    } finally {
+      isIntegerModule.default = originalIsInteger;
+      extractSignificantDigitsModule.default = originalExtractSignificantDigits;
+    }
+  });
+
+  it('returns false for non-string inputs', () => {
+    expect(isSafeNumber(123)).toBe(false);
+    expect(isSafeNumber(123.45)).toBe(false);
+    expect(isSafeNumber(null)).toBe(false);
+    expect(isSafeNumber(undefined)).toBe(false);
+    expect(isSafeNumber({})).toBe(false);
+    expect(isSafeNumber([])).toBe(false);
+  });
+
   // 专门测试第69行：整数且approx=true时返回true
   it('covers line 69: integer with approx=true returns true', () => {
     // 使用一个整数，但是在parseFloat后会有精度问题的情况
