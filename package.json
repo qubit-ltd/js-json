@@ -1,6 +1,6 @@
 {
   "name": "@qubit-ltd/json",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "A JavaScript library for parsing and formatting JSON data.",
   "author": "Haixing Hu",
   "license": "Apache-2.0",

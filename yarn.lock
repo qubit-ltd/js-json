@@ -2172,7 +2172,7 @@ __metadata:
     rollup-plugin-visualizer: "npm:^6.0.3"
     typescript: "npm:^5.9.2"
   peerDependencies:
-    "@babel/runtime": ^7.26.0
+    "@babel/runtime": ^7.28.4
   languageName: unknown
   linkType: soft
 
