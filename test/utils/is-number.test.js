@@ -54,4 +54,13 @@ describe('isNumber', () => {
   it('returns false for a string with leading zeros', () => {
     expect(isNumber('0123')).toBe(false);
   });
+
+  it('returns false for non-string inputs', () => {
+    expect(isNumber(123)).toBe(false);
+    expect(isNumber(123.45)).toBe(false);
+    expect(isNumber(null)).toBe(false);
+    expect(isNumber(undefined)).toBe(false);
+    expect(isNumber({})).toBe(false);
+    expect(isNumber([])).toBe(false);
+  });
 });

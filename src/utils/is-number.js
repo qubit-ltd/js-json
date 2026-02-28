@@ -25,6 +25,9 @@ const NUMBER_REGEX = /^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?$/;
  *     true if the string contains a number; false otherwise.
  */
 function isNumber(value) {
+  if (typeof value !== 'string') {
+    return false;
+  }
   return NUMBER_REGEX.test(value);
 }
 
